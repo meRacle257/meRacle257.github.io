@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        一个程序猿的简单资料 · Racle&#39;s zone.
+        Hexo+Github搭建博客 · Racle&#39;s zone.
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -58,7 +58,7 @@
 </head>
 
     
-        <body class="about-body">
+        <body class="post-body">
     
     
 <header class="header">
@@ -66,6 +66,15 @@
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Racle&#39;s zone.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Hexo+Github搭建博客</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Racle's zone.</a>
 </header>
@@ -75,23 +84,56 @@
     <!-- 主页  -->
     
     
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/intro/about-page.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            一个程序猿的简单资料
+            Hexo+Github搭建博客
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/01/31</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -159,15 +201,104 @@
             }
         </script>
         <div class="container container-unloaded">
-            <!-- 不可以删除，否则会调用post的layout  -->
-<main class="main about-page">
+            <main class="main post-page">
     <article class="article-entry">
-        <p>23岁，男，河南洛阳人，现就读于北京大学，软件工程硕士研究生，本科毕业于西南科技大学。方向是AI，数据分析等，但对web后台及LInux技术都有一定基础和兴趣。</p>
-<p>爱好篮球、历史、计算机等，尤其对中国古文化有着浓厚的兴趣。篮球方面，已有数十年球龄。计算机嘛，一方面因为是自己的专业，一方面是因为兴趣使然。</p>
-<p>为人乐观，好广交好友，年轻有志，常抱有一颗创业的新。</p>
-<p><strong>常言道，知音难觅，若有志同道合，兴趣相近，性情相仿之士，邮箱联系。</strong></p>
+        <p><em>记录自己搭建博客的过程，Mac环境。</em></p>
+<h3 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h3><p>首先创建自己的Github Page，也就是创建名为 username.github.io的repository。然后什么都不用做了。</p>
+<h3 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h3><ol>
+<li>安装nodejs，上<a href="https://nodejs.org/en/" target="_blank" rel="noopener">官网</a>，选择x.x.x.LTS版本下载，这个是稳定版，右边的x.x.x.CURRENT是最新版，有几率会出问题。</li>
+<li><p>安装和配置Hexo</p>
+<pre><code>npm install -g hexo-cli --no-optional
+//cd至想要保存博客地址的文件夹，执行以下命令
+//初始化
+hexo init 
+//编译
+npm install
+//启动
+hexo server
+</code></pre><p>经过了以上几步就创建成功了，如果没什么问题的话，localhost:4000就可以访问本地的博客了。</p>
+</li>
+<li><p>创建页面</p>
+<pre><code>//创建一个名字为pageName的页面
+hexo new &quot;pageName&quot;
+</code></pre></li>
+</ol>
+<p>然后打开source/_post目录就可以看到md文件，尽情的编辑吧，保存之后你就会发现文章出现在了刚才打开的本地博客中。以后可以不用命令创建，直接把md文件放在这里就可以了。</p>
+<h3 id="上传至Github"><a href="#上传至Github" class="headerlink" title="上传至Github"></a>上传至Github</h3><ol>
+<li><p>安装插件</p>
+<pre><code>npm install hexo-deployer-git --save
+</code></pre></li>
+<li><p>修改_config.yml</p>
+<pre><code>deploy: 
+    type: git 
+    repo: https://github.com/用户名/用户名.github.io.git 
+    branch: master
+</code></pre></li>
+<li><p>上传</p>
+<pre><code>hexo clean
+hexo g
+hexo d
+</code></pre><p>执行完以上所有步骤之后如果没有问题就可以在自己的【用户名.github.io】网址上看到刚才在本地看到的博客啦！</p>
+</li>
+</ol>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>到这里已经正常部署啦，但是还有一些其他优化的东西。</p>
+<h4 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h4><ol>
+<li><p>购买域名并配置：以阿里云为例，购买域名后，配置两个A记录，记录地址@和WWW，IP地址就是ping自己的GithubPage的地址。</p>
+</li>
+<li><p>GIthub自己的Page项目根目录下添加CNAME文件，不需要任何后缀，其中写上自己购买的域名即可。</p>
+</li>
+</ol>
+<h4 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h4><p><a href="https://hexo.io/themes/" target="_blank" rel="noopener">戳这里</a>进入选择主题，克隆下来，按照主题给出的教程操作即可。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>大爱hexo，真的又漂亮又简单，再也不用自己写了，专心搞算法～</p>
 
     </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2018/01/31/天池O2O优惠券预测比赛/" title= 天池O2O优惠券预测比赛 >
+                    <span>Next Post</span>
+                    <span>天池O2O优惠券预测比赛</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2018/01/15/ Linux大杂烩-2/" title= Linux大杂烩.2 >
+                    <span>Previous Post</span>
+                    <span>Linux大杂烩.2</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMzcyNy8xMDI4MQ==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -209,6 +340,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Github"><span class="toc-number">1.</span> <span class="toc-text">Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo"><span class="toc-number">2.</span> <span class="toc-text">Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上传至Github"><span class="toc-number">3.</span> <span class="toc-text">上传至Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">4.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自定义域名"><span class="toc-number">4.1.</span> <span class="toc-text">自定义域名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#主题"><span class="toc-number">4.2.</span> <span class="toc-text">主题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        一个程序猿的简单资料 · Racle&#39;s zone.
+        Linux大杂烩.2 · Racle&#39;s zone.
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -58,7 +58,7 @@
 </head>
 
     
-        <body class="about-body">
+        <body class="post-body">
     
     
 <header class="header">
@@ -66,6 +66,15 @@
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Racle&#39;s zone.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Linux大杂烩.2</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Racle's zone.</a>
 </header>
@@ -75,23 +84,58 @@
     <!-- 主页  -->
     
     
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/intro/about-page.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            一个程序猿的简单资料
+            Linux大杂烩.2
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/01/15</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -159,15 +203,93 @@
             }
         </script>
         <div class="container container-unloaded">
-            <!-- 不可以删除，否则会调用post的layout  -->
-<main class="main about-page">
+            <main class="main post-page">
     <article class="article-entry">
-        <p>23岁，男，河南洛阳人，现就读于北京大学，软件工程硕士研究生，本科毕业于西南科技大学。方向是AI，数据分析等，但对web后台及LInux技术都有一定基础和兴趣。</p>
-<p>爱好篮球、历史、计算机等，尤其对中国古文化有着浓厚的兴趣。篮球方面，已有数十年球龄。计算机嘛，一方面因为是自己的专业，一方面是因为兴趣使然。</p>
-<p>为人乐观，好广交好友，年轻有志，常抱有一颗创业的新。</p>
-<p><strong>常言道，知音难觅，若有志同道合，兴趣相近，性情相仿之士，邮箱联系。</strong></p>
+        <p> <em>Linux下安装mysql步骤</em></p>
+<ol>
+<li>下载安装包：wget <a href="http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz" target="_blank" rel="noopener">http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz</a></li>
+<li>解压：tar -zxvf mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz</li>
+<li>复制解压目录到local/mysql：cp -r mysql-5.6.33-linux-glibc2.5-x86_64 /usr/local/mysql</li>
+<li>添加用户组：groupadd mysql</li>
+<li>添加用户：useradd -g mysql mysql</li>
+<li>进入安装mysql软件目录：cd mysql/</li>
+<li>修改目录拥有者为mysql用户：chown -R mysql:mysql ./</li>
+<li>安装：./scripts/mysql_install_db –user=mysql（若报错FATAL ERROR: please install the following Perl modules before executing scripts/mysql_install_db: Data::Dumper：yum install -y perl-Data-Dumper）</li>
+<li>修改当前目录拥有者为root用户：chown -R root:root ./</li>
+<li>修改当前data目录拥有者为mysql用户：chown -R mysql:mysql data</li>
+<li>添加开机启动，把启动脚本放到开机初始化目录：<ul>
+<li>cp support-files/mysql.server /etc/init.d/mysql</li>
+<li>赋予可执行权限：chmod x /etc/init.d/mysql</li>
+<li>添加服务：chkconfig –add mysql </li>
+<li>显示服务列表：chkconfig –list（3，4，5都开即成功）</li>
+</ul>
+</li>
+<li>启动mysql服务<ul>
+<li>创建缺少的文件夹：mkdir /var/log/mariadb</li>
+<li>service mysql start</li>
+</ul>
+</li>
+<li>把mysql客户端放到默认路径：ln -s /usr/local/mysql/bin/mysql /usr/local/bin/mysql</li>
+<li>连接数据库：mysql -uroot -p<ul>
+<li>若报错：ERROR 2002 (HY000): Can’t connect to local MySQL server through socket ‘/tmp/mysql.sock’ 则打开/etc/my.cnf,看看里面配置的socket位置是什么目录。     </li>
+<li>其中若是“socket=/var/lib/mysql/mysql.sock”路径和“/tmp/mysql.sock”不一致。则建立一个软连接：ln -s /var/lib/mysql/mysql.sock /tmp/mysql.sock</li>
+</ul>
+</li>
+<li>数据库登录之后的操作（第一次登录没有密码）<ul>
+<li>删除匿名用户：delete from mysql.user where User=’’;flush privileges;</li>
+<li>修改密码：set password for root@localhost = password(‘1234’);</li>
+</ul>
+</li>
+</ol>
 
     </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2018/01/31/Hexo+Github搭建博客/" title= Hexo+Github搭建博客 >
+                    <span>Next Post</span>
+                    <span>Hexo+Github搭建博客</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2017/11/30/Linux大杂烩-1/" title= Linux大杂烩.1 >
+                    <span>Previous Post</span>
+                    <span>Linux大杂烩.1</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMzcyNy8xMDI4MQ==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -209,6 +331,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">

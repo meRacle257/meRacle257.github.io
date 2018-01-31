@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        一个程序猿的简单资料 · Racle&#39;s zone.
+        Linux大杂烩.1 · Racle&#39;s zone.
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -58,7 +58,7 @@
 </head>
 
     
-        <body class="about-body">
+        <body class="post-body">
     
     
 <header class="header">
@@ -66,6 +66,15 @@
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Racle&#39;s zone.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">Linux大杂烩.1</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Racle's zone.</a>
 </header>
@@ -75,23 +84,56 @@
     <!-- 主页  -->
     
     
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/intro/about-page.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            一个程序猿的简单资料
+            Linux大杂烩.1
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/11/30</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -159,15 +201,96 @@
             }
         </script>
         <div class="container container-unloaded">
-            <!-- 不可以删除，否则会调用post的layout  -->
-<main class="main about-page">
+            <main class="main post-page">
     <article class="article-entry">
-        <p>23岁，男，河南洛阳人，现就读于北京大学，软件工程硕士研究生，本科毕业于西南科技大学。方向是AI，数据分析等，但对web后台及LInux技术都有一定基础和兴趣。</p>
-<p>爱好篮球、历史、计算机等，尤其对中国古文化有着浓厚的兴趣。篮球方面，已有数十年球龄。计算机嘛，一方面因为是自己的专业，一方面是因为兴趣使然。</p>
-<p>为人乐观，好广交好友，年轻有志，常抱有一颗创业的新。</p>
-<p><strong>常言道，知音难觅，若有志同道合，兴趣相近，性情相仿之士，邮箱联系。</strong></p>
+        <p> <em>Linux作为一个开源的操作系统，经过无数人的共同努力，最终建立了一系列方便好用的软件操作体系。Linux在诞生之初，就是为开发人员而设计的，如果了解一些Linux的发展史，会发现以托瓦兹为首的素未谋面的高阶程序猿们，是如何从硬件的基础上一步步建立起来的底层和上层软件。简直造福了无数人啊。接下来要说的这个就是令我爱上Linux软件管理工具，还有让我头疼过一阵的权限问题。</em></p>
+<h3 id="包管理工具"><a href="#包管理工具" class="headerlink" title="包管理工具"></a>包管理工具</h3><h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>起初，Linux开发商为了简化软件安装步骤，免除用户繁复的安装步骤。提供了一种新的安装思路，就是厂商在他们的系统上面编译好了所需要的软件，然后直接发布给用户进行安装。客户取得文件后，只需要通过特定的命令来安装即可，期间当然会先进行系统环境，依赖等等的检查，一切正常就会开始安装。目前，Linux界最流行的安装方式有两种：</p>
+<ul>
+<li>dpkg ：apt  (Ubuntu)</li>
+<li>rpm : yum  (CentOS)</li>
+</ul>
+<p>但是这两个用起来都有一个问题，那就是需要使用完全和本地系统吻合的版本，还有一些依赖的问题，都还是很头疼的。幸运的是，开发人员早已帮我们想到了这个问题，dpkg有apt，rpm有yum，两者都是十分方便的在线软件升级安装功能。以yum为例，yum在全球范围内设置服务器，只要你能连的上网，就可以在服务器中查询适合自己系统的版本并且下载升级等等，同时yum还集成了rpm管理软件比如删除等操作，只需要简单的几个命令（具体命令网上到处都有）。</p>
+<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4><p>利用yum搭建FTP只需要以下几步， </p>
+<ol>
+<li>yum install vsftpd //安装vsftpd </li>
+<li>useradd ftpuser </li>
+<li>passwd ftpuser </li>
+<li>usermod -s /sbin/nologin ftpuser //该用户只能FTP登录 </li>
+</ol>
+<p>当然如果你还需要更加保险的操作，就需要修改ftp的配置文件，这里是为了说明yum好用，故不在话下。<br>Linux和Mac都出自于Unix，故Mac也有类似的工具，就是brew。</p>
+<h3 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h3><h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>有天手贱，在搞vsftpd时候执行了”chmod -R 777 /”的命令，直接修改了所有文件的权限。瞬间爆炸，原来Linux 中的每一个文件或目录都包含有访问权限，许多功能配置文件需要特定的权限才能工作。 </p>
+<p>比如SSH，/.ssh目录下的每一个文件都需要特定的权限和拥有者才可以使用，否则使用SSH连接服务器时就会出现”Permission denied (publickey,gssapi-keyex,gssapi-with-mic).”的错误， 如下图：</p>
+<p><img src="http://img.blog.csdn.net/20171130232327566?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvQWxSMjQ1Nw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="image"></p>
+<h4 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h4><p>关于Permission denied (publickey,gssapi-keyex,gssapi-with-mic).这个错误的解决方法，网上有很多，但是都有点误导人。总结了一下排查方法就是下面三点：</p>
+<ol>
+<li><p>首先在服务器本地测试ssh 127.0.0.1，如果可以那就是防火墙的问题。网上很多解决方法，这里不在写，很好解决。</p>
+</li>
+<li><p>若本地连接有问题，首先打开配置文件sshd_config寻找问题（vim /etc/ssh/sshd_config）。这里简单总结几个必须要修改的配置：</p>
+<ul>
+<li>RSAAuthentication yes </li>
+<li>PubkeyAuthentication yes #这两项为打开公钥模式 </li>
+<li>AuthorizedKeysFile .ssh/authorized_keys #配置公钥记录文件 </li>
+<li>PasswordAuthentication yes #打开密码验证模式</li>
+</ul>
+</li>
+<li><p>如果上述修改之后测试还不行，那就说明是文件权限的问题（本人就是由于误改了系统文件的权限）。如果是这样。解决方法就是找到一个完全相同配置的Linux系统，复制其系统目录下的systemp.bak文件，这个文件记录了所有的文件权限。</p>
+<ul>
+<li>scp root@目标机器IP：system.bak文件路径  本地存放system.bak路径</li>
+<li>然后执行命令：setfacl –restore=systemp.bak</li>
+<li>最后重启系统方能恢复正常。<strong>当然如果不想那么麻烦，直接重装系统。</strong></li>
+</ul>
+</li>
+</ol>
+<p><em>Linux中各种功能好用，很多就是建立在严格的权限控制之上的，所以给自己说一句切记，Linux下的文件不能随便修改权限。</em></p>
 
     </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2018/01/15/ Linux大杂烩-2/" title= Linux大杂烩.2 >
+                    <span>Next Post</span>
+                    <span>Linux大杂烩.2</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2017/11/28/SSH工作原理/" title= SSH工作原理 >
+                    <span>Previous Post</span>
+                    <span>SSH工作原理</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMzcyNy8xMDI4MQ==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -209,6 +332,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#包管理工具"><span class="toc-number">1.</span> <span class="toc-text">包管理工具</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#应用"><span class="toc-number">1.2.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#权限管理"><span class="toc-number">2.</span> <span class="toc-text">权限管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#问题"><span class="toc-number">2.1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决方法"><span class="toc-number">2.2.</span> <span class="toc-text">解决方法</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
