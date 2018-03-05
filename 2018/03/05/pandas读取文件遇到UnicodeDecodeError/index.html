@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        SSH工作原理 · Racle&#39;s zone.
+        pandas读取文件遇到UnicodeDecodeError · Racle&#39;s zone.
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -72,7 +72,7 @@
                 <a href="/" >Racle&#39;s zone.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">SSH工作原理</a>
+                <a href="#" class="post-name">pandas读取文件遇到UnicodeDecodeError</a>
             </div>
     </div>
     
@@ -93,7 +93,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            SSH工作原理
+            pandas读取文件遇到UnicodeDecodeError
             <!-- 404 -->
             
         </h1>
@@ -109,16 +109,10 @@
         
             <!-- 文章页标签  -->
             
-                <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-</div>
-            
             <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/static/api/js/share.js"];</script>
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2017/11/28</span>
+                <span class="post-intro-time">2018/03/05</span>
                 <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                     <span class="iconfont-archer">&#xe604;</span>
                     <span id="busuanzi_value_page_pv"></span>
@@ -201,32 +195,33 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><em>从本科一直到现在研究生，自己摸索的后台技术方面东西就不多。但是一直存在对后台技术的热爱，近来，利用自己的学生身份，购买了阿里云服务器，借此来小小的打磨一下自己的技术。虽然目标是算法岗，但后台技术多少都是需要有的。这篇文章就是主要来说明自己在用阿里云遇到的第一个问题。</em></p>
-<h3 id="问题提出"><a href="#问题提出" class="headerlink" title="问题提出"></a>问题提出</h3><p>服务器安装了Linux的CentOS系统，当然需要远程连接才好用了。这就涉及到一个登录的问题。传统的密码登录存在很大的风险，最严重的隐患就是，一个系统用一对账号密码登录，密码易泄漏。当然还有一些其他问题，比如在信息被截获了就密码就整个就变裸体了。于是乎，SSH的出现就一定程度上解决了这个问题。（当然还是有安全问题，因为绝对安全的通信是不存在的。）<br> <img src="" alt="image"></p>
-<h3 id="工作思路"><a href="#工作思路" class="headerlink" title="工作思路"></a>工作思路</h3><p>举个例子。首先用户和服务器都拥有一个公钥和私钥。用户想要登录这个服务器，必须事先把自己的公钥存入服务器中。（比如Github或阿里云需要上传密钥对，就是指上传公钥。） </p>
-<p>第一阶段：连接。用户向服务器发请求，服务器把自己的公钥发给用户，用户端把密码用服务器发送来的公钥将密码加密，然后发送至服务器，服务器用私钥解密，获得密码，即连接成功。 </p>
-<p>第二阶段：认证。服务器生成随机数，使用用户端预先存储在服务器中的公钥进行加密，发送给用户。用户收到后使用私钥进行解密，接着使用上一段中的方法，发送给服务器进行验证，两者匹配则认证成功。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以OpenSSH来说（Linux自带的SSH实现），用户需要做的就是把自己的公钥上传（这时候服务器端会将其存放在authorized_keys文件中），然后就可以使用ssh命令进行连接。第一次连接时，会提示安全确认，如果你输入yes确认安全，服务器发送来的公钥存储将会被存在known_hosts文件中，然后输入密码即登录成功。 </p>
-<p>注意，可以看到第一次登录时需要输入密码，成功登陆后，服务器端和用户端都存储了对方的公钥信息，并且列为安全对象。接下里使用同一台机器登录同一个服务器时，就不需要输入密码，仅仅需要执行工作原理中的第二阶段认证即可成功登录。</p>
+        <p>转自：<a href="http://blog.csdn.net/zhanshirj/article/details/73382552" target="_blank" rel="noopener">CSDN</a></p>
 <hr>
-<p><em>学习一些技术上的东西，一味的按照网上教程来做，不仅容易出错，而且就算成功了，下次还是不知道为什么，还需要查。所以最好的方法就是弄懂原理，才可以说自己懂某个技术。下一次使用，就算忘了，有了之前理解的基础，也会很快搞明白。</em></p>
+<p>问题：<br>pandas在读取含有中文字符的csv文件时报错，因为python默认的编码方式是‘ utf-8’，而这个文件的编码是‘gbk’。</p>
+<pre><code>UnicodeDecodeError: &apos;utf-8&apos; codec can&apos;t decode byte 0xb1 in position 0: invalid start byte
+</code></pre><p>解决办法：</p>
+<pre><code>data=pd.read_table(&apos;province.csv&apos;, sep=&apos;,&apos;, names=cnames, encoding=&apos;gbk&apos;)
+</code></pre><p>将译码方式设置为 encoding=’gbk’</p>
+<p>这里，sep=’,’，因为 csv 文件是逗号分割文件。names=cnames, cnames是设置的列的名字。</p>
+<p><strong>其他注意</strong>：</p>
+<p>保存问件时，为了后续处理方便，可以统一用utf-8编码。</p>
+<p>更改txt，csv文件的编码方式：</p>
+<ul>
+<li>用记事本打开，另存为，右下角选择编码方式。</li>
+</ul>
+<ul>
+<li>sublime text3 也可以更改编码方式。可以将sublime text3的默认编码方式设置为utf-8。</li>
+</ul>
 
     </article>
     <!-- 前后页  -->
     <ul class="post-pager">
         
-            <li class="next">
-                <a href= "/2017/11/30/Linux大杂烩-1/" title= Linux大杂烩.1 >
-                    <span>Next Post</span>
-                    <span>Linux大杂烩.1</span>
-                </a>
-            </li>
-        
         
             <li class="previous">
-                <a href= "/2017/01/31/我的黑历史/" title= 我的黑历史 >
+                <a href= "/2018/01/31/天池O2O优惠券预测比赛/" title= 天池O2O优惠券预测比赛 >
                     <span>Previous Post</span>
-                    <span>我的黑历史</span>
+                    <span>天池O2O优惠券预测比赛</span>
                 </a>
             </li>
         
@@ -305,7 +300,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题提出"><span class="toc-number">1.</span> <span class="toc-text">问题提出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工作思路"><span class="toc-number">2.</span> <span class="toc-text">工作思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+        
     </div>
     
     <div class="back-top">&#xe639;</div>
