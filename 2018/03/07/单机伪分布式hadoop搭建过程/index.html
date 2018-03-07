@@ -207,8 +207,7 @@
     <article class="article-entry">
         <p><em>虽然参考了多篇博客，自己搭建的过程遇到了各种坑。各个博客都有自己写的详尽的地方，但是还是没有遇到全部描述出我遇到的问题。所以还是记录一下自己的搭建过程，以供以后再次搭建参考。</em></p>
 <p><strong>配置：Mac + Parallels + （3台）Ubuntu16.04</strong></p>
-<p>#目录</p>
-<ol>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ol>
 <li>环境准备<ul>
 <li>配置网络</li>
 <li>创建hadoop用户</li>
@@ -226,8 +225,7 @@
 <li>运行hadoop</li>
 </ol>
 <hr>
-<h2 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h2><p>####- 配置网络</p>
-<p>修改虚拟机名字。当然也可以不改，不过为了方便起见，建议修改。  打开之后直接写名字，三个虚拟机分别改为master,node1,node2</p>
+<h2 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h2><h4 id="配置网络"><a href="#配置网络" class="headerlink" title="- 配置网络"></a>- 配置网络</h4><p>修改虚拟机名字。当然也可以不改，不过为了方便起见，建议修改。  打开之后直接写名字，三个虚拟机分别改为master,node1,node2</p>
 <pre><code>vi /etc/hostname 
 </code></pre><p>增加网络映射。首先需要虚拟机使用桥接模式连上网，这时虚拟机会拥有一个独一无二的IP地址，首先查看IP地址：</p>
 <pre><code>ifconfig
@@ -238,8 +236,7 @@
 192.168.31.175     node1
 192.168.31.99      node2
 </code></pre><p>上面的IP地址替换为你的虚拟机的IP地址。</p>
-<p>####- 创建hadoop用户</p>
-<p>重新创建一个用户和用户组是非常有必要的，不仅可以保证系统其他用户的权限不乱，而且在搭建成功互联的时候也很利用主节点对子节点的管理。这部分比较简单直接稍作修改搬运一下别人的博客。</p>
+<h4 id="创建hadoop用户"><a href="#创建hadoop用户" class="headerlink" title="- 创建hadoop用户"></a>- 创建hadoop用户</h4><p>重新创建一个用户和用户组是非常有必要的，不仅可以保证系统其他用户的权限不乱，而且在搭建成功互联的时候也很利用主节点对子节点的管理。这部分比较简单直接稍作修改搬运一下别人的博客。</p>
 <pre><code>sudo groupadd hadoop    //设置hadoop用户组
 
 sudo useradd –s /bin/bash –d /home/hadoopuser –m hadoopuser –g hadoop   //添加一个hadoopuser用户，此用户属于hadoop用户组。
@@ -247,8 +244,7 @@ sudo useradd –s /bin/bash –d /home/hadoopuser –m hadoopuser –g hadoop   
 sudo passwd hadoopuser   //设置用户zhm登录密码
 
 su hadoopuser  //切换到zhm用户中
-</code></pre><p>####- 安装配置SSH登陆</p>
-<pre><code>关于SSH的配置我有另外一篇介绍的文章，这里就简单贴一下代码。
+</code></pre><h4 id="安装配置SSH登陆"><a href="#安装配置SSH登陆" class="headerlink" title="- 安装配置SSH登陆"></a>- 安装配置SSH登陆</h4><pre><code>关于SSH的配置我有另外一篇介绍的文章，这里就简单贴一下代码。
 
     ssh-keygen              //一路回车生成公私钥
     cp id_rsa.pub authorized_keys   //将自己的公钥授权登陆
@@ -263,8 +259,7 @@ su hadoopuser  //切换到zhm用户中
     ssh node1
     //同样需要配置node2的登陆
     //master本身只需要本地登陆成功即可
-</code></pre><p>####- 安装配置JDK</p>
-<pre><code>下载JDK，解压至属于hadoopuser用户的文件夹，**注意一定要解压到所有权是新创建的hadoop用户的文件夹下**，不然会出现一系列问题。保险起见，建议解压到/home/hadoop/目录下，新创的文件夹都属于hadoop用户。解压后配置环境变量。
+</code></pre><h4 id="安装配置JDK"><a href="#安装配置JDK" class="headerlink" title="- 安装配置JDK"></a>- 安装配置JDK</h4><pre><code>下载JDK，解压至属于hadoopuser用户的文件夹，**注意一定要解压到所有权是新创建的hadoop用户的文件夹下**，不然会出现一系列问题。保险起见，建议解压到/home/hadoop/目录下，新创的文件夹都属于hadoop用户。解压后配置环境变量。
 
     vi /etc/profile
 
@@ -281,13 +276,10 @@ su hadoopuser  //切换到zhm用户中
     java -version
 
 若出现了java的版本号，说明配置成功了，至此，环境准备完成了。
-</code></pre><p>##2. 配置hadoop</p>
-<p><strong>下载并配置hadoop只需要在一个虚拟机上完成即可，配置好了以后可以直接复制到其他虚拟机。</strong></p>
-<p>####- 安装Hadoop</p>
-<p>官网下载<a href="http://mirror.bit.edu.cn/apache/hadoop/common/" target="_blank" rel="noopener">Hadoop</a>，给出的链接有各个版本，自行选择名如hadoop-2.8.2.tar.gz的下载。</p>
+</code></pre><h2 id="2-配置hadoop"><a href="#2-配置hadoop" class="headerlink" title="2. 配置hadoop"></a>2. 配置hadoop</h2><p><strong>下载并配置hadoop只需要在一个虚拟机上完成即可，配置好了以后可以直接复制到其他虚拟机。</strong></p>
+<h4 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="- 安装Hadoop"></a>- 安装Hadoop</h4><p>官网下载<a href="http://mirror.bit.edu.cn/apache/hadoop/common/" target="_blank" rel="noopener">Hadoop</a>，给出的链接有各个版本，自行选择名如hadoop-2.8.2.tar.gz的下载。</p>
 <p>解压注意事项仍然是文件夹的归属问题，建议和JDK一样解压到hadoop用户的文件夹下。</p>
-<p>####- 修改Hadoop配置文件</p>
-<p>cd到hadoop解压目录的etc/hadoop文件夹下。修改如下三个xml即可。网上有很多版本，亲测修改三个即可。原因有待学习。<strong>注意以下添加的代码都在configuration中，并且所有涉及到文件目录的地方，自行选定位置即可，没有创建也没关系，但是注意所选的文件夹必须要归属于hadoop用户。</strong></p>
+<h4 id="修改Hadoop配置文件"><a href="#修改Hadoop配置文件" class="headerlink" title="- 修改Hadoop配置文件"></a>- 修改Hadoop配置文件</h4><p>cd到hadoop解压目录的etc/hadoop文件夹下。修改如下三个xml即可。网上有很多版本，亲测修改三个即可。原因有待学习。<strong>注意以下添加的代码都在configuration中，并且所有涉及到文件目录的地方，自行选定位置即可，没有创建也没关系，但是注意所选的文件夹必须要归属于hadoop用户。</strong></p>
 <pre><code>1. core-site.xml
 
         //configure中添加如下代码
@@ -343,15 +335,13 @@ su hadoopuser  //切换到zhm用户中
             &lt;value&gt;yarn&lt;/value&gt;
         &lt;/property&gt;
 </code></pre><p>上面三个文件修改完毕之后，hadoop就修改完成了，这时候只需要将本机的hadoop配置复制到其他两个虚拟机上。但是保险起见，这时先不要复制，等格式化成功之后再复制，不然错误了还要修改三个虚拟机。</p>
-<p>####- 修改环境变量           </p>
-<p>这个是每个虚拟机都需要单独配置的，不能复制。</p>
+<h4 id="修改环境变量"><a href="#修改环境变量" class="headerlink" title="- 修改环境变量"></a>- 修改环境变量</h4><p>这个是每个虚拟机都需要单独配置的，不能复制。</p>
 <pre><code>vi /etc/profile
 
 //添加以下两行，其中HADOOP_HOME地址写hadoop的解压目录
 export HADOOP_HOME=/home/hdpuser/baseware/hadoop-2.7.5
 export PATH=$HADOOP_HOME/bin:$PATH
-</code></pre><p>##3. 格式化hadoop</p>
-<p>首先刷新环境配置，使其立即生效。</p>
+</code></pre><h2 id="3-格式化hadoop"><a href="#3-格式化hadoop" class="headerlink" title="3. 格式化hadoop"></a>3. 格式化hadoop</h2><p>首先刷新环境配置，使其立即生效。</p>
 <pre><code>source /etc/profile
 </code></pre><p>然后切换到hadoop用户下执行格式化。</p>
 <pre><code>su hadoopuser
@@ -361,8 +351,7 @@ hadoop namenode -format
 <pre><code>scp -r  (本机hadoop文件目录)  node1:(目标目录/)
 scp -r  (本机hadoop文件目录)  node1:(目标目录/)
 </code></pre><p>然后分别格式化，成功以后再启动。</p>
-<p>##4. 启动hadoop</p>
-<p>cd到sbin目录下，执行start-all.sh</p>
+<h2 id="4-启动hadoop"><a href="#4-启动hadoop" class="headerlink" title="4. 启动hadoop"></a>4. 启动hadoop</h2><p>cd到sbin目录下，执行start-all.sh</p>
 <pre><code>./start-all.sh
 </code></pre><p>若没有error，permittion denied等字样，则继续下一步，查看后台进程。</p>
 <pre><code>jps   //查看后台进程
@@ -469,7 +458,7 @@ scp -r  (本机hadoop文件目录)  node1:(目标目录/)
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-环境准备"><span class="toc-number">1.</span> <span class="toc-text">1. 环境准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#至此hadoop已经在三个虚拟机中搭建完毕！"><span class="toc-number">2.</span> <span class="toc-text">至此hadoop已经在三个虚拟机中搭建完毕！</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-环境准备"><span class="toc-number">1.1.</span> <span class="toc-text">1. 环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置网络"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">- 配置网络</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建hadoop用户"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">- 创建hadoop用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装配置SSH登陆"><span class="toc-number">1.1.0.3.</span> <span class="toc-text">- 安装配置SSH登陆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装配置JDK"><span class="toc-number">1.1.0.4.</span> <span class="toc-text">- 安装配置JDK</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-配置hadoop"><span class="toc-number">1.2.</span> <span class="toc-text">2. 配置hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装Hadoop"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">- 安装Hadoop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改Hadoop配置文件"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">- 修改Hadoop配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改环境变量"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">- 修改环境变量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-格式化hadoop"><span class="toc-number">1.3.</span> <span class="toc-text">3. 格式化hadoop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-启动hadoop"><span class="toc-number">1.4.</span> <span class="toc-text">4. 启动hadoop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#至此hadoop已经在三个虚拟机中搭建完毕！"><span class="toc-number">1.5.</span> <span class="toc-text">至此hadoop已经在三个虚拟机中搭建完毕！</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
