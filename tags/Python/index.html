@@ -158,6 +158,42 @@
     
     
         <article class="index-post">
+            <a class="abstract-title" href = "/2018/03/05/pandas读取文件遇到UnicodeDecodeError/" >
+                
+                    <span>pandas读取文件遇到UnicodeDecodeError</span>
+            </a>
+            <a class="content-show-full" href = "/2018/03/05/pandas读取文件遇到UnicodeDecodeError/" >
+                <div class="abstract-content">
+                    转自：CSDN
+
+问题：pandas在读取含有中文字符的csv文件时报错，因为python默认的编码方式是‘ utf-8’，而这个文件的编码是‘gbk’。
+UnicodeDecodeError: &apos;utf-8&apos; codec can&apos;t decode byte 0xb1 in position 0: invalid start byte
+解决办法：
+data=pd.read_table(&apos;province.csv&apos;, sep=&apos;,&apos;, names=cnames, encoding=&apos;gbk&apos;)
+将译码...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = Python>Python</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/03/05</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="abstract-title" href = "/2018/01/31/天池O2O优惠券预测比赛/" >
                 
                     <span>天池O2O优惠券预测比赛</span>
@@ -177,9 +213,9 @@
                 
                 <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = 算法>算法</a>
-    
         <a class="post-tag" href="javascript:void(0);" data-href = Python>Python</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 算法>算法</a>
     
         <a class="post-tag" href="javascript:void(0);" data-href = 比赛>比赛</a>
     
@@ -314,6 +350,14 @@
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-archive"> Total : 7 </div>
     
     <div class="post-archive">
@@ -323,6 +367,11 @@
     
     <div class="archive-year"> 2018 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/07</span><a class="archive-post-title" href= "/2018/03/07/单机伪分布式hadoop搭建过程/" >单机伪分布式hadoop搭建过程</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -363,11 +412,6 @@
             <span class="archive-post-date">11/28</span><a class="archive-post-title" href= "/2017/11/28/SSH工作原理/" >SSH工作原理</a>
         </li>
     
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/31</span><a class="archive-post-title" href= "/2017/01/31/我的黑历史/" >我的黑历史</a>
-        </li>
-    
     </div>
   </div>
         <div class="sidebar-tags">
@@ -379,13 +423,11 @@
     
         <span class="sidebar-tag-name"><a href= "#">教程</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">Python</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">比赛</a></span>
+        <span class="sidebar-tag-name"><a href= "#">算法</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">生活</a></span>
+        <span class="sidebar-tag-name"><a href= "#">比赛</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
