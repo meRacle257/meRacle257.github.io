@@ -171,21 +171,29 @@
     
     
         <article class="index-post">
-            <a class="abstract-title" href = "/2018/05/13/SVM和贝叶斯/" >
+            <a class="abstract-title" href = "/2018/05/14/数据挖掘算法浅谈/" >
                 
-                    <span>SVM和贝叶斯</span>
+                    <span>数据挖掘的一些算法浅谈</span>
             </a>
-            <a class="content-show-full" href = "/2018/05/13/SVM和贝叶斯/" >
+            <a class="content-show-full" href = "/2018/05/14/数据挖掘算法浅谈/" >
                 <div class="abstract-content">
-                    
+                    本文是要记录一下自己在平时做数据工作时候接触过过的数据挖掘算法，注意是要写我自己经常用的算法，也不一定是十大算法，反正用什么写什么吧。
+AprioriApriori在我做分布式的时候接触的，课程需要用在分布式环境下实现一些东西，具体什么呢，自己选。于是我就选择了用分布式去实现Apriori算法。因为之前接触过，Apriori算法确实在计算效率上不太高，主要是频繁集的计算，需要大量的计算资源，如果分布式的话，会快很多。先说说算法本身吧。
+先算满足最小支持度阈值的所有项集，这些项集称作频繁项集。然后在频繁集中提取所有高置信度的规则。关于什么是支持度和和置信度呢，移步这里，写的很好我就不做重复...
                 </div>
             </a>
             <div class="abstract-post-meta">
                 <!-- tags  -->
                 
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 算法>算法</a>
+    
+</div>
+                
                 <!-- date  -->
                 <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/05/13</span>
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/05/14</span>
                 </div>
             </div>
         </article>
@@ -264,28 +272,6 @@ eclipse中hadoop环境hdfs配置首先要下载hadoop-eclipse-plugin-**.jar，�
                 <!-- date  -->
                 <div class="abstract-date">
                     <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/04/22</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/03/13/关于决策树族-GBDT:XGB等/" >
-                
-                    <span>关于决策树族的提升算法的一些记录</span>
-            </a>
-            <a class="content-show-full" href = "/2018/03/13/关于决策树族-GBDT:XGB等/" >
-                <div class="abstract-content">
-                    
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/03/13</span>
                 </div>
             </div>
         </article>
@@ -375,6 +361,72 @@ data=pd.read_table(&apos;province.csv&apos;, sep=&apos;,&apos;, names=cnames, en
                 <!-- date  -->
                 <div class="abstract-date">
                     <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/03/05</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="abstract-title" href = "/2018/02/11/决策树族算法/" >
+                
+                    <span>关于决策树族算法</span>
+            </a>
+            <a class="content-show-full" href = "/2018/02/11/决策树族算法/" >
+                <div class="abstract-content">
+                    （以下都是自己对算法的理解和总结，欢迎指正。）决策树族算法，是包括决策树在内和一些以传统决策树为基分类器而形成的提升算法。比如GBDT、XGBoost等。本文来记载自己学习这类算法时记录的认为比较重要的概念或步骤。
+决策树先从决策树说起。决策树的模型是树形结构，其中中间节点是划分属性，叶结点是划分得到的集合。由此可知，中间节点的选择是建立决策树的关键。按照中间节点的属性划分方式，主要有以下三种选择方法。
+
+信息熵增益
+
+首先是信息熵的概念，早已烂熟于心（实在是不想写数学公式），就不写了。需要注意的是，信息熵有几个比较重要的性质，其一，同样的分类类别下，概率相等时熵值最大，可以类比重要不等...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 机器学习>机器学习</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/02/11</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
+            <a class="abstract-title" href = "/2018/02/10/关于广义线性回归/" >
+                
+                    <span>关于广义线性回归</span>
+            </a>
+            <a class="content-show-full" href = "/2018/02/10/关于广义线性回归/" >
+                <div class="abstract-content">
+                    我理解的性回归最原始的是指几何意义上线性的分类方法。但是实际上，logistic或者高阶的回归的几何意义已经不是线性了，但是从本质上来说还是属于线性族，比如高阶的的线性回归，可以理解为模型没变，不过是对参数本身高阶化了。
+本文就是要记录一下自己在学习线性回归中认为比较关键的一些概念，以便以后能够迅速复习。
+很烦的是数学公式，拿电脑写数学公式实在是太麻烦了，费时费力，公式我就不写了，尽量写一些语言，然自己再看到时能帮自己迅速回忆起来这个模型到底是怎么回事。数学公式什么的，就留在自己的手写笔记本上吧。
+线性模型线性模型本身很简单，就是一条线的方程，只不过后来衍生出很多其他的模型。
+
+logi...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 机器学习>机器学习</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/02/10</span>
                 </div>
             </div>
         </article>
@@ -493,39 +545,6 @@ hexo server
                 <!-- date  -->
                 <div class="abstract-date">
                     <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/15</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/01/13/关于广义线性回归/" >
-                
-                    <span>关于广义线性回归</span>
-            </a>
-            <a class="content-show-full" href = "/2018/01/13/关于广义线性回归/" >
-                <div class="abstract-content">
-                    我理解的性回归最原始的是指几何意义上线性的分类方法。但是实际上，logistic或者高阶的回归的几何意义已经不是线性了，但是从本质上来说还是属于线性族，比如高阶的的线性回归，可以理解为模型没变，不过是对参数本身高阶化了。
-本文就是要记录一下自己在学习线性回归中认为比较关键的一些概念，以便以后能够迅速复习。
-很烦的是数学公式，拿电脑写数学公式实在是太麻烦了，费时费力，公式我就不写了，尽量写一些语言，然自己再看到时能帮自己迅速回忆起来这个模型到底是怎么回事。数学公式什么的，就留在自己的手写笔记本上吧。
-线性模型线性模型本身很简单，就是一条线的方程，只不过后来衍生出很多其他的模型。
-
-logi...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 机器学习>机器学习</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/13</span>
                 </div>
             </div>
         </article>
@@ -746,16 +765,6 @@ logi...
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-archive"> Total : 12 </div>
     
     <div class="post-archive">
@@ -768,7 +777,7 @@ logi...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/13</span><a class="archive-post-title" href= "/2018/05/13/SVM和贝叶斯/" >SVM和贝叶斯</a>
+            <span class="archive-post-date">05/14</span><a class="archive-post-title" href= "/2018/05/14/数据挖掘算法浅谈/" >数据挖掘的一些算法浅谈</a>
         </li>
     
     
@@ -783,17 +792,22 @@ logi...
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">03/13</span><a class="archive-post-title" href= "/2018/03/13/关于决策树族-GBDT:XGB等/" >关于决策树族的提升算法的一些记录</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">03/07</span><a class="archive-post-title" href= "/2018/03/07/单机全分布式hadoop搭建过程/" >单机全分布式hadoop搭建过程</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">03/05</span><a class="archive-post-title" href= "/2018/03/05/pandas的一些坑/" >pandas的一些坑</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span><a class="archive-post-title" href= "/2018/02/11/决策树族算法/" >关于决策树族算法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/10</span><a class="archive-post-title" href= "/2018/02/10/关于广义线性回归/" >关于广义线性回归</a>
         </li>
     
     
@@ -809,11 +823,6 @@ logi...
     
         <li class="archive-post-item">
             <span class="archive-post-date">01/15</span><a class="archive-post-title" href= "/2018/01/15/ Linux大杂烩_MySQL安装/" >Linux大杂烩_MySQL安装</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/13</span><a class="archive-post-title" href= "/2018/01/13/关于广义线性回归/" >关于广义线性回归</a>
         </li>
     
     

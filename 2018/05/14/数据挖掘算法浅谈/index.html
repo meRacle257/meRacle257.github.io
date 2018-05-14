@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        Racle&#39;s zone.
+        数据挖掘的一些算法浅谈 · Racle&#39;s zone.
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -58,6 +58,8 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
@@ -65,27 +67,71 @@
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
     
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Racle&#39;s zone.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">数据挖掘的一些算法浅谈</a>
+            </div>
+    </div>
+    
     <a class="home-link" href=/>Racle's zone.</a>
 </header>
     <div class="wrapper">
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            数据挖掘的一些算法浅谈
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 算法>算法</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/05/14</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -153,75 +199,63 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>本文是要记录一下自己在平时做数据工作时候接触过过的数据挖掘算法，注意是要写我自己经常用的算法，也不一定是十大算法，反正用什么写什么吧。</p>
+<h2 id="Apriori"><a href="#Apriori" class="headerlink" title="Apriori"></a>Apriori</h2><p>Apriori在我做分布式的时候接触的，课程需要用在分布式环境下实现一些东西，具体什么呢，自己选。于是我就选择了用分布式去实现Apriori算法。因为之前接触过，Apriori算法确实在计算效率上不太高，主要是频繁集的计算，需要大量的计算资源，如果分布式的话，会快很多。先说说算法本身吧。</p>
+<p>先算满足最小支持度阈值的所有项集，这些项集称作频繁项集。然后在频繁集中提取所有高置信度的规则。关于什么是支持度和和置信度呢，<a href="https://blog.csdn.net/baimafujinji/article/details/53456931" target="_blank" rel="noopener">移步这里</a>，写的很好我就不做重复工作了。</p>
+<p>我还是记录一下我做分布式实现的要点。以二项频繁集为例，计算的时候首先将集合排序，切记一定要排序，否则map阶段产生的二项是有可能出现顺序颠倒的情况的，这样的话在reduce阶段就会当作是两项。排序以后按顺序取两项为key，1为value做reduce，就算出了两项的频繁集。单项频繁集直接做一个map就出来了，然后将这两项做一下除法就产生强规则集合了。三项四项的一次类推即可。</p>
+<h2 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h2><p>TF-IDF值个人感觉和A算法思想上是类似的，就是在找一种方法，同时兼顾两个方面的东西。这里TF是词语在所有文档中出现的频率，即表现了这个词语在这些文档中的重要度。而IDF是出现过这些文档在所有文档中的逆频率，即表现了这个词语对于单个文档的重要程度。两者相乘，自然的就表示了词语对文档的代表程度。</p>
+<h2 id="聚类算法"><a href="#聚类算法" class="headerlink" title="聚类算法"></a>聚类算法</h2><ul>
+<li>K-Means</li>
+</ul>
+<p>这是一种很经典，很简单的利用样本点在特征空间中的距离分布进行多次迭代实现自动标注样本类别的算法。算法中涉及到距离公式的使用：其中取绝对值时称为曼哈顿距离，差的平方时称为欧几里得距离。以二维空间为例，欧式距离即两点之间的直线距离，而曼哈顿距离为两点之间在与坐标轴垂直方向上的距离之和。对于给定的数据集，确定距离计算公式和初值K。首先根据样本的特征空间随机给定K个初值坐标分别做为类中心点，计算样本点到每个类中心店的距离，针对每个样本点，按照其与类中心点的距离排序，将其划分至距离最近的类中心点所属类中，取每个类中所有坐标的均值作为新的类中心点坐标。至此完成一次迭代，算法重复迭代至每个类中的样本点不再发生变化时结束。</p>
+<ul>
+<li>DBScan</li>
+</ul>
+<p>DBScan算法从密度的角度定义了类之间的关系，算法同样利用距离公式来定义样本之间的相关性。但是在计算类别时采用了不同的方法，其本质是通过对指定半径范围的密度计算来划分类簇。算法先输入半径，最小密度。首先计算样本之间的相似度矩阵，然后依次计算所有未处理的样本点在半径距离内的样本点个数，将其作为该样本点密度。若该密度大于最小密度，则以此为中心创建新簇，遍历该点在半径距离内的所有样本点；否则将其标记为杂音，算法结束。DBScan算法类簇个数无需提前设定，在针对类圆形分布的样本点集时有不错的应用效果，但通常需要反复的调参过程才能找到达到较优效果的参数。</p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2018/04/23/算法设计笔记/" title= 算法设计学习笔记（1.1～） >
+                    <span>Previous Post</span>
+                    <span>算法设计学习笔记（1.1～）</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMzcyNy8xMDI4MQ==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
     
     
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
-        <article class="index-post">
-            <a class="abstract-title" href = "/2017/11/30/Linux大杂烩-1/" >
-                
-                    <span>Linux大杂烩.1</span>
-            </a>
-            <a class="content-show-full" href = "/2017/11/30/Linux大杂烩-1/" >
-                <div class="abstract-content">
-                     Linux作为一个开源的操作系统，经过无数人的共同努力，最终建立了一系列方便好用的软件操作体系。Linux在诞生之初，就是为开发人员而设计的，如果了解一些Linux的发展史，会发现以托瓦兹为首的素未谋面的高阶程序猿们，是如何从硬件的基础上一步步建立起来的底层和上层软件。简直造福了无数人啊。接下来要说的这个就是令我爱上Linux软件管理工具，还有让我头疼过一阵的权限问题。
-包管理工具介绍起初，Linux开发商为了简化软件安装步骤，免除用户繁复的安装步骤。提供了一种新的安装思路，就是厂商在他们的系统上面编译好了所需要的软件，然后直接发布给用户进行安装。客户取得文件后，只需要通过特定的命令来...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/30</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2017/11/28/SSH工作原理/" >
-                
-                    <span>SSH工作原理</span>
-            </a>
-            <a class="content-show-full" href = "/2017/11/28/SSH工作原理/" >
-                <div class="abstract-content">
-                    近来，利用自己的学生身份，购买了阿里云服务器，借此继续热一热Linux操作。虽然目标是算法岗，但后台技术多少都是需要有的。这篇文章就是主要来说明自己在用阿里云遇到的几个问题。
-问题提出服务器安装了Linux的CentOS系统，当然需要远程连接才好用了。这就涉及到一个登录的问题。传统的密码登录存在很大的风险，最严重的隐患就是，一个系统用一对账号密码登录，密码易泄漏。当然还有一些其他问题，比如在信息被截获了就密码就整个就变裸体了。于是乎，SSH的出现就一定程度上解决了这个问题。（当然还是有安全问题，因为绝对安全的通信是不存在的。） 
-工作思路举个例子。首先用户和服务器都拥有一个公钥和私钥。用...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/28</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/">#PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
-    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -263,6 +297,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Apriori"><span class="toc-number">1.</span> <span class="toc-text">Apriori</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TF-IDF"><span class="toc-number">2.</span> <span class="toc-text">TF-IDF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类算法"><span class="toc-number">3.</span> <span class="toc-text">聚类算法</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
