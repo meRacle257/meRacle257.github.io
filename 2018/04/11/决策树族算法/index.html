@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        Racle&#39;s zone.
+        关于决策树族算法 · Racle&#39;s zone.
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -58,6 +58,8 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
@@ -65,27 +67,71 @@
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
     
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Racle&#39;s zone.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">关于决策树族算法</a>
+            </div>
+    </div>
+    
     <a class="home-link" href=/>Racle's zone.</a>
 </header>
     <div class="wrapper">
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            关于决策树族算法
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 机器学习>机器学习</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/04/11</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -153,133 +199,99 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/03/07/单机全分布式hadoop搭建过程/" >
-                
-                    <span>单机全分布式hadoop搭建过程</span>
-            </a>
-            <a class="content-show-full" href = "/2018/03/07/单机全分布式hadoop搭建过程/" >
-                <div class="abstract-content">
-                    虽然参考了多篇博客，自己搭建的过程遇到了各种坑。各个博客都有自己写的详尽的地方，但是还是没有遇到全部描述出我遇到的问题。所以还是记录一下自己的搭建过程，以供以后再次搭建参考。
-配置：Mac + Parallels + （3台）Ubuntu16.04
-目录
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>（以下都是自己对算法的理解和总结，欢迎指正。）<br>决策树族算法，是包括决策树在内和一些以传统决策树为基分类器而形成的提升算法。比如GBDT、XGBoost等。本文来记载自己学习这类算法时记录的认为比较重要的概念或步骤。</p>
+<h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><p>先从决策树说起。决策树的模型是树形结构，其中中间节点是划分属性，叶结点是划分得到的集合。由此可知，中间节点的选择是建立决策树的关键。按照中间节点的属性划分方式，主要有以下三种选择方法。</p>
+<ul>
+<li>信息熵增益</li>
+</ul>
+<p>首先是信息熵的概念，早已烂熟于心（实在是不想写数学公式），就不写了。需要注意的是，信息熵有几个比较重要的性质，其一，同样的分类类别下，概率相等时熵值最大，可以类比重要不等式的结论记忆。其二，类别多的分类熵值相对更小，这个举个例子，比如三个三分之一和两个二分之一求熵值，在划分之后熵值相等的条件下，显然二个分类的更大一些。</p>
+<p>此外，还需要知道条件熵的概念。条件熵的表达式和条件概率类似，但一定要注意他们不是一个东西。条件概率是给定事件发生的条件下某事件发生的概率，而条件熵是给定事件发生时，另一事件分类熵值的加权。（说的比较绕，可参考李航的统计学习。）</p>
+<p>知道了上述两个值，以集合的熵值减去选择某一属性后的条件熵值，即可得到信息增益。</p>
+<ul>
+<li>信息熵增益比</li>
+</ul>
+<p>信息增益比是针对上述信息增益的描述中，类别多的分类熵值相对更大这个问题。显然，如果单纯计算针对每个属性的信息增益时，类别多的属性熵值倾向于更小，在整体熵值相等的前提下，差值就相对大，产生了不公平竞争。为了抹平这种差距，将信息增益再除以一个条件信息熵，就得到了相对信息熵，也就是信息增益比。</p>
+<ul>
+<li>Gini系数</li>
+</ul>
+<p>个人认为，基尼系数是另外一种熵值的度量方式，至于为什么选择这个，好像没有看到哪本书给出解释。我的理解是这样的。类比熵值的计算公式，将其中的对数部分近似取为In(p(x))，然后对其做一阶泰勒展开，忽略高阶无穷小，就得到了（1-p(x)），乘上前面的因子就是基尼系数的计算公式。所以，基尼系数其实也是熵值的一种计算方式，是忽略了一部分高阶因素的混乱程度度量值。这种取主要矛盾的方法在机器学习中很常见，矩阵分解就是代表。</p>
+<p>以上是三种属性选择的方法，有了划分节点的选择标准，递归的构建决策树，直至叶结点中熵值为0，或者达到树深限制，或者达到叶结点限制等等。就形成了一棵决策树。决策树按照上述信息熵的计算标准不同分别有了不同的名字。</p>
+<ul>
+<li>ID3：信息增益</li>
+<li>C4.5：信息增益比</li>
+<li>CART：基尼系数（最常用）</li>
+</ul>
+<h1 id="随机森林"><a href="#随机森林" class="headerlink" title="随机森林"></a>随机森林</h1><p>随机森林是结合多个弱分类器的一种方式，比较容易理解，就不多说了。这里仅说一下随机森林的两个重要过程，第一个过程是样本的随机采样，每一次建树都随机采样建树，这样有利于避免局部极小。第二个过程是多个分类器的投票，这是体现结合模型优势的地方，以得票最多的结果作为最终结果。</p>
+<p>原理：以每个弱分类器正确率为0.7为例，使用随机森林，相当于求 1 - 一半以上都错误的概率，1 - C53 <em> 0.3^3</em>0.7^2 ，结果约为87%。提升巨大。</p>
+<h1 id="提升树"><a href="#提升树" class="headerlink" title="提升树"></a>提升树</h1><p>说到提升树就是根据以决策树为基分类器的提升过程。首先要说说提升模型。</p>
+<ul>
+<li>提升模型</li>
+</ul>
+<p>提升模型基于将多个弱分类器的结果结合成为一个强分类器的思想。还有这里必须说一下长久以来自己的一个错误概念。弱分类器和强分类器，先说强分类器，它是指只要给定一个足够强大的参数，模型一定能学习到每个样本的信息，也就是拟合所有样本，比如线性回归、SVM就是强分类器（以前一直以为线性回归是弱分类器，因为感觉比较弱）。弱分类器的代表就是树形结构，无论怎么调整，一棵树是不可能完美拟合所有数据的（相对来说）。</p>
+<p>提升模型的工作流程是，首先对于给定的损失函数，有了前M-1个弱分类器时，然后对每个样本输入求梯度得到一个伪残差（L2范式时是标准残差），下一个弱分类器的目标就是拟合这个伪残差。需要注意的是初始弱分类器的构建，第一个弱分类器我们按照误差最小的标准建立，比如L2范式就选择数据的均值，L1范式就选数据的中位数作为初始划分。</p>
+<p>GBDT和XGB的工作流程就是标准的提升方法，只是建树的过程不同。</p>
+<ul>
+<li>GBDT</li>
+</ul>
+<p>GBDT的工作流程就是提升方法的流程，不再赘述。顾名思义就是按照梯度方向不断拟合的过程。值得一提的是提升树到底如何获得样本的预测值，给定一个提升树模型时，计算每个决策树的分类结果，然后累加起来就是最终的结果。</p>
+<ul>
+<li>XGBoost</li>
+</ul>
+<p>XGBoost相较于传统的提升方法多了一个对二阶信息的利用。XGBoost的目标函数中不仅包括训练损失，还包括了一个正则项（不唯一，可以是叶结点的权值乘以叶结点的区域）。首先给出提升过程：针对给定的目标函数，不做梯度下降，而是做一个二阶的泰勒展开，去掉所有的常数项其中包含前M-1棵树的输出结果，就能得到仅包含前M-1棵树的损失信息（一阶g和二阶h）的新的损失函数，那么新的树的优化目标就是这个损失函数。</p>
+<p>总的来说，XGB的优化之处在于。其一，我们可以从前M-1棵树的一阶和二阶信息中得到下一棵树的优化目标（对应于GBDT的伪残差），相当于利用了目标函数对于每一个样本的二阶导信息，这也是XGB收敛速度的保证。其二，目标函数中加上了正则化项，这一点增加了模型的泛化能力。其三，也是实现层面的，建树时增加了并行处理。</p>
+<p><a href="http://xgboost.readthedocs.io/en/latest/model.html" target="_blank" rel="noopener">如还不懂，直接传送这里</a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>本文对比XGB的文档，统计学习方法加上各种博客，综合了自己的理解，记录决策树族的算法。用到的或者说学过的就这些，其中很多数学公式需要推导，但是实在是写在这里太费力，得不偿失，以后准备把手写的公式截图，贴在上面，目前来说，先写到这里。</p>
 
-环境准备
-配置网络
-创建hadoop用户
-安装配置SSH登陆
-安装配置JDK
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2018/05/07/算法设计笔记/" title= OJ算法笔记 >
+                    <span>Next Post</span>
+                    <span>OJ算法笔记</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2018/04/01/关于广义线性回归/" title= 关于广义线性回归 >
+                    <span>Previous Post</span>
+                    <span>关于广义线性回归</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMzcyNy8xMDI4MQ==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
 
 
-配置hadoop
-安装hadoop
-修改hadoop配置文件
-配置hadoop环境变量
-
-
-格式化hadoop
-运行hadoop
-
-
-1. 环境准备1.1 配置网络修改虚拟机名字。当然也可以不改，不过为了方便起见，建议修改。  打开之后直接写名字，三个虚...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/03/07</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/01/15/ Linux大杂烩_MySQL安装/" >
-                
-                    <span>Linux大杂烩_MySQL安装</span>
-            </a>
-            <a class="content-show-full" href = "/2018/01/15/ Linux大杂烩_MySQL安装/" >
-                <div class="abstract-content">
-                     Linux下安装mysql步骤
-
-下载安装包：wget http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz
-解压：tar -zxvf mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz
-复制解压目录到local/mysql：cp -r mysql-5.6.33-linux-glibc2.5-x86_64 /usr/local/mysql
-添加用户组：groupadd mysql
-添加用户：useradd -g mysql mysql
-...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/15</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2017/11/30/Linux大杂烩-1/" >
-                
-                    <span>Linux大杂烩.1</span>
-            </a>
-            <a class="content-show-full" href = "/2017/11/30/Linux大杂烩-1/" >
-                <div class="abstract-content">
-                     Linux作为一个开源的操作系统，经过无数人的共同努力，最终建立了一系列方便好用的软件操作体系。Linux在诞生之初，就是为开发人员而设计的，如果了解一些Linux的发展史，会发现以托瓦兹为首的素未谋面的高阶程序猿们，是如何从硬件的基础上一步步建立起来的底层和上层软件。简直造福了无数人啊。接下来要说的这个就是令我爱上Linux软件管理工具，还有让我头疼过一阵的权限问题。
-包管理工具介绍起初，Linux开发商为了简化软件安装步骤，免除用户繁复的安装步骤。提供了一种新的安装思路，就是厂商在他们的系统上面编译好了所需要的软件，然后直接发布给用户进行安装。客户取得文件后，只需要通过特定的命令来...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/30</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
-    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -321,6 +333,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#决策树"><span class="toc-number">1.</span> <span class="toc-text">决策树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#随机森林"><span class="toc-number">2.</span> <span class="toc-text">随机森林</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#提升树"><span class="toc-number">3.</span> <span class="toc-text">提升树</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">

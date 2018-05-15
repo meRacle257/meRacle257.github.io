@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        Racle&#39;s zone.
+        从hadoop到spark · Racle&#39;s zone.
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -58,6 +58,8 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
@@ -65,27 +67,73 @@
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
     
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Racle&#39;s zone.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">从hadoop到spark</a>
+            </div>
+    </div>
+    
     <a class="home-link" href=/>Racle's zone.</a>
 </header>
     <div class="wrapper">
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            从hadoop到spark
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/03/22</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -153,133 +201,93 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/03/07/单机全分布式hadoop搭建过程/" >
-                
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><em>接上篇hadoop搭建一文。本文记录如下几个方面</em></p>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ol>
+<li>eclipse中hadoop环境</li>
+<li>spark搭建过程</li>
+<li>eclipse中spark-scala的环境</li>
+</ol>
+<hr>
+<h1 id="eclipse中hadoop环境"><a href="#eclipse中hadoop环境" class="headerlink" title="eclipse中hadoop环境"></a>eclipse中hadoop环境</h1><h2 id="hdfs配置"><a href="#hdfs配置" class="headerlink" title="hdfs配置"></a>hdfs配置</h2><p>首先要下载hadoop-eclipse-plugin-**.jar，至于在哪里下，google一下。下载对应版本的插件后，放到eclipse的plugins目录下，然后打开eclipse：</p>
+<p>打开window–&gt;preferences ,配置Hadoop MapReduce的安装路径；</p>
+<p>打开Window–&gt;Show View–&gt;Other 窗口，选择 MapReducer Locations；</p>
+<p>此时在底部的视图中应该会出现mapreduce locations，点击右上角蓝色小象新建一个hadoop地址，并配置mapreduce master和hdfs master，其中：</p>
+<ul>
+<li>MapReduce Master：与$HADOOP_DIRCONF/mapred-site.xml配置保持一致，注意，host和port都要保持一致（一般是9001）；</li>
+<li>HDFS Master：与$HADOOP_DIRCONF/core-site.xml配置保持一致（一般是9000）</li>
+<li>User Name：登录hadoop用户名，可以随意填写</li>
+</ul>
+<p>此时，点击eclipse右上角的蓝色小加号按钮，选择添加mapreduce到project explore视图中，打开你的hadoop，就可以从eclipse中访问hdfs了。</p>
+<h2 id="mapreduce"><a href="#mapreduce" class="headerlink" title="mapreduce"></a>mapreduce</h2><p>直接创建mapreduce工程，直接跑就行。需要注意的是，读文件时以hdfs://master:9000/….为开头读取；写文件时必须加上，如果目标路径不存在则写，不然会报错。其他还没有发现需要特别注意的事情。</p>
+<h1 id="spark搭建过程"><a href="#spark搭建过程" class="headerlink" title="spark搭建过程"></a>spark搭建过程</h1><p>我的虚拟机ubuntu，步骤是</p>
+<ul>
+<li>下载sacla，解压到目标文件夹，配置/etc/profile，Scala不用配置path。</li>
+<li>下载spark，解压到目标文件夹，配置/etc/profile，需要配置path。</li>
+<li>复制上述两个文件夹到子节点中，并一样的配置profile。</li>
+</ul>
+<p>检查是否成功：<br>cd到spark的sbin下，./start-all.sh，然后jps查看是否有一个worker的进程，子节点和主节点都有的话，就成功了。</p>
+<h1 id="eclipse中spark-scala的环境"><a href="#eclipse中spark-scala的环境" class="headerlink" title="eclipse中spark-scala的环境"></a>eclipse中spark-scala的环境</h1><p><a href="http://scala-ide.org/download/current.html" target="_blank" rel="noopener">在这里</a>找到eclipse版本对应的scala插件。将地址复制进<br>help -&gt; install new …里面打开，安装其中的scala IDE for eclipse 和 ** development support两个，然后就可以创建scala project了：</p>
+<ul>
+<li>project -&gt; proporties</li>
+<li>设置scala compiler-&gt;fix 2.11.6 - 2.11.8都可以</li>
+<li>java build path -&gt; libraries -&gt; add extern jars中添加spark根目录下jars文件夹内的所有jar包</li>
+</ul>
+<p>其他还有几点需要注意：</p>
+<ul>
+<li>调试程序时只能使用本地的文件作为输入，写起来比较方便，可以随时跑起来。spark conf必须要设置master</li>
+<li>在hdfs中跑程序，需要先打包成.jar文件利用spark-submit命令提交到spark执行，可以在localhost:4000中查看运行的任务。</li>
+</ul>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2018/04/01/关于广义线性回归/" title= 关于广义线性回归 >
+                    <span>Next Post</span>
+                    <span>关于广义线性回归</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2018/03/07/单机全分布式hadoop搭建过程/" title= 单机全分布式hadoop搭建过程 >
+                    <span>Previous Post</span>
                     <span>单机全分布式hadoop搭建过程</span>
-            </a>
-            <a class="content-show-full" href = "/2018/03/07/单机全分布式hadoop搭建过程/" >
-                <div class="abstract-content">
-                    虽然参考了多篇博客，自己搭建的过程遇到了各种坑。各个博客都有自己写的详尽的地方，但是还是没有遇到全部描述出我遇到的问题。所以还是记录一下自己的搭建过程，以供以后再次搭建参考。
-配置：Mac + Parallels + （3台）Ubuntu16.04
-目录
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
 
-环境准备
-配置网络
-创建hadoop用户
-安装配置SSH登陆
-安装配置JDK
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMzcyNy8xMDI4MQ==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
 
 
-配置hadoop
-安装hadoop
-修改hadoop配置文件
-配置hadoop环境变量
-
-
-格式化hadoop
-运行hadoop
-
-
-1. 环境准备1.1 配置网络修改虚拟机名字。当然也可以不改，不过为了方便起见，建议修改。  打开之后直接写名字，三个虚...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/03/07</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/01/15/ Linux大杂烩_MySQL安装/" >
-                
-                    <span>Linux大杂烩_MySQL安装</span>
-            </a>
-            <a class="content-show-full" href = "/2018/01/15/ Linux大杂烩_MySQL安装/" >
-                <div class="abstract-content">
-                     Linux下安装mysql步骤
-
-下载安装包：wget http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz
-解压：tar -zxvf mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz
-复制解压目录到local/mysql：cp -r mysql-5.6.33-linux-glibc2.5-x86_64 /usr/local/mysql
-添加用户组：groupadd mysql
-添加用户：useradd -g mysql mysql
-...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/15</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2017/11/30/Linux大杂烩-1/" >
-                
-                    <span>Linux大杂烩.1</span>
-            </a>
-            <a class="content-show-full" href = "/2017/11/30/Linux大杂烩-1/" >
-                <div class="abstract-content">
-                     Linux作为一个开源的操作系统，经过无数人的共同努力，最终建立了一系列方便好用的软件操作体系。Linux在诞生之初，就是为开发人员而设计的，如果了解一些Linux的发展史，会发现以托瓦兹为首的素未谋面的高阶程序猿们，是如何从硬件的基础上一步步建立起来的底层和上层软件。简直造福了无数人啊。接下来要说的这个就是令我爱上Linux软件管理工具，还有让我头疼过一阵的权限问题。
-包管理工具介绍起初，Linux开发商为了简化软件安装步骤，免除用户繁复的安装步骤。提供了一种新的安装思路，就是厂商在他们的系统上面编译好了所需要的软件，然后直接发布给用户进行安装。客户取得文件后，只需要通过特定的命令来...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/30</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
-    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -321,6 +329,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eclipse中hadoop环境"><span class="toc-number">2.</span> <span class="toc-text">eclipse中hadoop环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hdfs配置"><span class="toc-number">2.1.</span> <span class="toc-text">hdfs配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mapreduce"><span class="toc-number">2.2.</span> <span class="toc-text">mapreduce</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#spark搭建过程"><span class="toc-number">3.</span> <span class="toc-text">spark搭建过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eclipse中spark-scala的环境"><span class="toc-number">4.</span> <span class="toc-text">eclipse中spark-scala的环境</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        Racle&#39;s zone.
+        关于广义线性回归 · Racle&#39;s zone.
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -58,6 +58,8 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
@@ -65,27 +67,71 @@
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
     
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Racle&#39;s zone.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">关于广义线性回归</a>
+            </div>
+    </div>
+    
     <a class="home-link" href=/>Racle's zone.</a>
 </header>
     <div class="wrapper">
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            关于广义线性回归
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = 机器学习>机器学习</a>
+    
+</div>
+            
+            <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = "/static/api/js/share.js"];</script>
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/04/01</span>
+                <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                    <span class="iconfont-archer">&#xe604;</span>
+                    <span id="busuanzi_value_page_pv"></span>
+                </span>
+                <span class="shareWrapper">
+                    <span class="iconfont-archer shareIcon">
+                        &#xe601;
+                    </span>
+                    <span class="bdsharebuttonbox">
+                        <a href="#" class="bds_more shareText" data-cmd="more">Share</a>
+                    </span>
+                </span>
+            </div>
         
     </div>
 </div>
@@ -153,133 +199,78 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/03/07/单机全分布式hadoop搭建过程/" >
-                
-                    <span>单机全分布式hadoop搭建过程</span>
-            </a>
-            <a class="content-show-full" href = "/2018/03/07/单机全分布式hadoop搭建过程/" >
-                <div class="abstract-content">
-                    虽然参考了多篇博客，自己搭建的过程遇到了各种坑。各个博客都有自己写的详尽的地方，但是还是没有遇到全部描述出我遇到的问题。所以还是记录一下自己的搭建过程，以供以后再次搭建参考。
-配置：Mac + Parallels + （3台）Ubuntu16.04
-目录
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>我理解的性回归最原始的是指几何意义上线性的分类方法。但是实际上，logistic或者高阶的回归的几何意义已经不是线性了，但是从本质上来说还是属于线性族，比如高阶的的线性回归，可以理解为模型没变，不过是对参数本身高阶化了。</p>
+<p>本文就是要记录一下自己在学习线性回归中认为比较关键的一些概念，以便以后能够迅速复习。</p>
+<p>很烦的是数学公式，拿电脑写数学公式实在是太麻烦了，费时费力，公式我就不写了，尽量写一些语言，然自己再看到时能帮自己迅速回忆起来这个模型到底是怎么回事。数学公式什么的，就留在自己的手写笔记本上吧。</p>
+<h1 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h1><p>线性模型本身很简单，就是一条线的方程，只不过后来衍生出很多其他的模型。</p>
+<ol>
+<li><p>logistic：为了解决二分类问题时将原本模型的因变量重新作为自变量放入sigmod函数中形成的模型，实际上是一个二分类的概率分布函数。</p>
+</li>
+<li><p>softmax：为了解决多分类问题，将每个类别的样本分别作回归，将结果取对数（也就是回归之后的线性表达式），对数加和做分母，某一类别的对数做分子，再乘上一个常数，造成了一个概率分布。</p>
+</li>
+<li><p>高阶回归模型，其实就是线性模型本身，但是阶数一旦高了，就能更好的拟合数据，并且表现出非线性的特质。毕竟我们都有一个常识：当模型阶数大于等于样本个数时，一定能完全拟合。就好像中学时候的二元一次方程组一样，必须两个方程才有解，高了就会过拟合，低了就会欠拟合。</p>
+</li>
+</ol>
+<h1 id="目标函数及其最小化"><a href="#目标函数及其最小化" class="headerlink" title="目标函数及其最小化"></a>目标函数及其最小化</h1><p>按照经典的机器学习思路，给定了模型，就能给出损失函数，给出损失函数就可以利用一定的方法求得最优的参数值，接下来要说的东西有点碎，按照小标题想到哪说到哪吧。</p>
+<h2 id="范式"><a href="#范式" class="headerlink" title="范式"></a>范式</h2><p>L2范式和L1范式是比较常用的误差函数，当然也可以更高阶的，但是这两个对于我们来说更加的易于解释和理解，实际效果也不差。比如最小化L2范式就是均值，最小化L1范式就是中位数。都是比较直观的印象。</p>
+<h2 id="极大似然法与最小二乘"><a href="#极大似然法与最小二乘" class="headerlink" title="极大似然法与最小二乘"></a>极大似然法与最小二乘</h2><p>极大似然法是更加经典的方法，这里说这个的原因，是因为我要记录一下，极大似然法是可以推导出最小二乘的。从逻辑回归的定义出发，将其看作一个两点分布（逻辑回归模型本身是符合概率分布定义的），然后取对数似然，然后极小化，去掉常数项，就可以得到最小二乘表达。最终要得到参数的表达式中，又一个矩阵逆的项，这造成了巨大的计算量（当数据量巨大时），故多采用梯度下降法，绕过矩阵逆的计算。</p>
+<h2 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h2><p>有了损失函数也就是目标函数，我们想要做的自然就是求的损失函数的最小值，那么很自然的就想到了使用梯度下降法，这个方法百度一大堆就不说了。实际中，往往会因为数据量太大时，一次梯度下降的代价实在太大，于是便有了随机梯度下降。</p>
+<p>标准的随机梯度下降法是指每次下降时仅选用一个样本点，这样的就有可能产生一些波动，这样的波动在最终接近极值时有可能产生一个很不nice的往复运动，造成最终无法取到极值，但是这样也是有好处的。因为梯度下降本身是无法确保最小值的，他只能取到极小值，这取决于初始点的选择，那么这样的波动就有可能帮助模型跳出局限的某些极小值。（是理论上可能，但是感觉不靠谱。。）</p>
+<p>实际应用中，往往采用折中的方法，比如神经网络中的随机采样一个batch的数据进行梯度下降。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>还有一些其他模型，比如局部加权线性模型可以用来检测和处理异常值，是个无参模型（无限参数，和样本数量一样多）。这里不一一说了，整体的处理流程是一样的。</p>
+<p>对于回归：给定模型和损失函数之后，直接对损失函数进行梯度下降，就可以得到极小值。</p>
+<p>对于分类问题：一般构造为概率分布，然后用极大似然法形成似然函数，对似然函数求极大值。因为似然函数必然存在极值，故直接对其求一阶导令其为0即可求得参数。</p>
 
-环境准备
-配置网络
-创建hadoop用户
-安装配置SSH登陆
-安装配置JDK
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+            <li class="next">
+                <a href= "/2018/04/11/决策树族算法/" title= 关于决策树族算法 >
+                    <span>Next Post</span>
+                    <span>关于决策树族算法</span>
+                </a>
+            </li>
+        
+        
+            <li class="previous">
+                <a href= "/2018/03/22/从hadoop到spark/" title= 从hadoop到spark >
+                    <span>Previous Post</span>
+                    <span>从hadoop到spark</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC8zMzcyNy8xMDI4MQ==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
 
 
-配置hadoop
-安装hadoop
-修改hadoop配置文件
-配置hadoop环境变量
-
-
-格式化hadoop
-运行hadoop
-
-
-1. 环境准备1.1 配置网络修改虚拟机名字。当然也可以不改，不过为了方便起见，建议修改。  打开之后直接写名字，三个虚...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/03/07</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2018/01/15/ Linux大杂烩_MySQL安装/" >
-                
-                    <span>Linux大杂烩_MySQL安装</span>
-            </a>
-            <a class="content-show-full" href = "/2018/01/15/ Linux大杂烩_MySQL安装/" >
-                <div class="abstract-content">
-                     Linux下安装mysql步骤
-
-下载安装包：wget http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz
-解压：tar -zxvf mysql-5.6.33-linux-glibc2.5-x86_64.tar.gz
-复制解压目录到local/mysql：cp -r mysql-5.6.33-linux-glibc2.5-x86_64 /usr/local/mysql
-添加用户组：groupadd mysql
-添加用户：useradd -g mysql mysql
-...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 教程>教程</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/01/15</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="abstract-title" href = "/2017/11/30/Linux大杂烩-1/" >
-                
-                    <span>Linux大杂烩.1</span>
-            </a>
-            <a class="content-show-full" href = "/2017/11/30/Linux大杂烩-1/" >
-                <div class="abstract-content">
-                     Linux作为一个开源的操作系统，经过无数人的共同努力，最终建立了一系列方便好用的软件操作体系。Linux在诞生之初，就是为开发人员而设计的，如果了解一些Linux的发展史，会发现以托瓦兹为首的素未谋面的高阶程序猿们，是如何从硬件的基础上一步步建立起来的底层和上层软件。简直造福了无数人啊。接下来要说的这个就是令我爱上Linux软件管理工具，还有让我头疼过一阵的权限问题。
-包管理工具介绍起初，Linux开发商为了简化软件安装步骤，免除用户繁复的安装步骤。提供了一种新的安装思路，就是厂商在他们的系统上面编译好了所需要的软件，然后直接发布给用户进行安装。客户取得文件后，只需要通过特定的命令来...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 技术>技术</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Linux>Linux</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/30</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
-    
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -321,6 +312,13 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#线性模型"><span class="toc-number">1.</span> <span class="toc-text">线性模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#目标函数及其最小化"><span class="toc-number">2.</span> <span class="toc-text">目标函数及其最小化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#范式"><span class="toc-number">2.1.</span> <span class="toc-text">范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#极大似然法与最小二乘"><span class="toc-number">2.2.</span> <span class="toc-text">极大似然法与最小二乘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#梯度下降法"><span class="toc-number">2.3.</span> <span class="toc-text">梯度下降法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
