@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        pandas的一些坑 · Racle&#39;s zone.
+        python的一些坑 · Racle&#39;s zone.
         
     </title>
     <link rel="icon" href= /assets/favicon.ico>
@@ -72,7 +72,7 @@
                 <a href="/" >Racle&#39;s zone.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">pandas的一些坑</a>
+                <a href="#" class="post-name">python的一些坑</a>
             </div>
     </div>
     
@@ -93,7 +93,7 @@
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            pandas的一些坑
+            python的一些坑
             <!-- 404 -->
             
         </h1>
@@ -203,11 +203,9 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>转自：<a href="http://blog.csdn.net/zhanshirj/article/details/73382552" target="_blank" rel="noopener">CSDN</a></p>
-<hr>
-<p>问题：<br>pandas在读取含有中文字符的csv文件时报错，因为python默认的编码方式是‘ utf-8’，而这个文件的编码是‘gbk’。</p>
+        <p>#问题一#<br>pandas在读取含有中文字符的csv文件时报错，因为python默认的编码方式是‘ utf-8’，而这个文件的编码是‘gbk’。</p>
 <pre><code>UnicodeDecodeError: &apos;utf-8&apos; codec can&apos;t decode byte 0xb1 in position 0: invalid start byte
-</code></pre><p>解决办法：</p>
+</code></pre><p><strong>解决办法：</strong></p>
 <pre><code>data=pd.read_table(&apos;province.csv&apos;, sep=&apos;,&apos;, names=cnames, encoding=&apos;gbk&apos;)
 </code></pre><p>将译码方式设置为 encoding=’gbk’</p>
 <p>这里，sep=’,’，因为 csv 文件是逗号分割文件。names=cnames, cnames是设置的列的名字。</p>
@@ -220,6 +218,8 @@
 <ul>
 <li>sublime text3 也可以更改编码方式。可以将sublime text3的默认编码方式设置为utf-8。</li>
 </ul>
+<p>#问题二#<br>在pycharm或者其他的IDE中，大部分都不会将当前文件目录自动加入自己的sourse_path，导致同一目录下的python文件不能互相import。</p>
+<p><strong>解决办法：</strong><br>在需要互相引用的目录中右键make_directory as–&gt;sources path将当前工作的文件夹加入source_path就OK了。</p>
 
     </article>
     <!-- 前后页  -->
@@ -499,7 +499,7 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/05</span><a class="archive-post-title" href= "/2018/02/05/pandas的一些坑/" >pandas的一些坑</a>
+            <span class="archive-post-date">02/05</span><a class="archive-post-title" href= "/2018/02/05/pandas的一些坑/" >python的一些坑</a>
         </li>
     
     

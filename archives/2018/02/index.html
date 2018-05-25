@@ -160,17 +160,15 @@
         <article class="index-post">
             <a class="abstract-title" href = "/2018/02/05/pandas的一些坑/" >
                 
-                    <span>pandas的一些坑</span>
+                    <span>python的一些坑</span>
             </a>
             <a class="content-show-full" href = "/2018/02/05/pandas的一些坑/" >
                 <div class="abstract-content">
-                    转自：CSDN
-
-问题：pandas在读取含有中文字符的csv文件时报错，因为python默认的编码方式是‘ utf-8’，而这个文件的编码是‘gbk’。
+                    #问题一#pandas在读取含有中文字符的csv文件时报错，因为python默认的编码方式是‘ utf-8’，而这个文件的编码是‘gbk’。
 UnicodeDecodeError: &apos;utf-8&apos; codec can&apos;t decode byte 0xb1 in position 0: invalid start byte
 解决办法：
 data=pd.read_table(&apos;province.csv&apos;, sep=&apos;,&apos;, names=cnames, encoding=&apos;gbk&apos;)
-将译码...
+将译码方式设置为 e...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -416,7 +414,7 @@ data=pd.read_table(&apos;province.csv&apos;, sep=&apos;,&apos;, names=cnames, en
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">02/05</span><a class="archive-post-title" href= "/2018/02/05/pandas的一些坑/" >pandas的一些坑</a>
+            <span class="archive-post-date">02/05</span><a class="archive-post-title" href= "/2018/02/05/pandas的一些坑/" >python的一些坑</a>
         </li>
     
     
